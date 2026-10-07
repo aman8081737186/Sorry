@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>I'm sorry</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600&family=DM+Sans:wght@400;500&display=swap">
+<style>
+:root{--bg:#141a2e;--ink:#f3e9e4;--soft:#b9b4c4;--rose:#f0a6b8;--rose-d:#2a1a24;--gold:#ffd9a0;--paper:#fff6ee;--pen:#3b2a35;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(120% 80% at 50% 0%,#2b2147 0%,var(--bg) 60%);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.7;min-height:100vh;overflow-x:hidden}
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main{position:relative;z-index:1;max-width:36rem;margin:0 auto;padding:0 1.4rem 10vh}
+h1,h2{font-family:'Fraunces',Georgia,serif}
+h1{font-weight:300;font-size:clamp(3rem,15vw,5.5rem);line-height:1;letter-spacing:-.02em;margin:1rem 0 2rem}
+h2{font-weight:600;font-size:1.6rem;margin:0 0 1.2rem}
+[hidden]{display:none!important}
+.center{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1.4rem}
+.tap{color:var(--soft);margin:0}
+.emo{display:inline-block;animation:sway 2.4s ease-in-out infinite}
+.bear{animation:sway 3s ease-in-out infinite;transform-origin:50% 100%}
+.bear.happy{animation:hop .7s ease-in-out infinite}
+.tear{animation:tear 2s ease-in infinite}
+@keyframes sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+@keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes tear{0%{transform:translateY(0);opacity:1}80%{opacity:1}100%{transform:translateY(22px);opacity:0}}
+/* envelope */
+.env{position:relative;width:min(78vw,300px);aspect-ratio:3/2;border:0;padding:0;border-radius:10px;background:#e9b8c4;cursor:pointer;box-shadow:0 20px 50px rgba(0,0,0,.45);animation:float 3s ease-in-out infinite}
+.env::before{content:"";position:absolute;inset:0;border-radius:10px;background:linear-gradient(135deg,transparent 49.5%,#d99aab 50%) left/50% 100% no-repeat,linear-gradient(225deg,transparent 49.5%,#d99aab 50%) right/50% 100% no-repeat}
+.flap{position:absolute;left:0;right:0;top:0;height:60%;background:#f0a6b8;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .8s ease}
+.seal{position:absolute;left:50%;top:50%;transform:translate(-50%,-30%);font-size:2.2rem;transition:opacity .4s}
+.env.open{animation:none}.env.open .flap{transform:rotateX(180deg)}.env.open .seal{opacity:0}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+/* letter */
+.paper{background:var(--paper);color:var(--pen);border-radius:6px;padding:2rem 1.6rem;box-shadow:0 18px 40px rgba(0,0,0,.4);background-image:repeating-linear-gradient(transparent 0 2.15rem,rgba(150,120,140,.18) 2.15rem 2.2rem);font-family:'Caveat',cursive;font-size:1.65rem;line-height:2.2rem;transform:rotate(-.6deg)}
+.paper p{margin:0 0 2.2rem}
+.paper .sign{color:#b3476a;margin:0}
+.paper p{opacity:0;animation:rise .9s ease forwards}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* promises */
+.sec{margin-top:4rem}
+.prom{list-style:none;margin:0;padding:0;display:grid;gap:1rem}
+.prom li{display:flex;gap:1rem;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:1rem 1.2rem}
+.prom .ic{font-size:1.9rem;line-height:1.2}
+.prom b{display:block;font-family:'Fraunces',serif;font-weight:600}
+.prom span{color:var(--soft)}
+/* ticket */
+.ticket{position:relative;background:var(--gold);color:#3a2a14;border-radius:14px;padding:1.4rem 1.6rem;transform:rotate(1deg);box-shadow:0 14px 30px rgba(0,0,0,.35);-webkit-mask:radial-gradient(circle 12px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat;mask:radial-gradient(circle 12px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat}
+.ticket h2{margin:0 0 .6rem;font-size:1.4rem}
+.ticket ul{margin:0;padding-left:0;list-style:none}
+.ticket small{display:block;margin-top:.7rem;border-top:2px dashed rgba(58,42,20,.4);padding-top:.6rem}
+/* ask */
+.ask{text-align:center;padding-top:2.5rem;border-top:1px solid rgba(243,233,228,.18);min-height:15rem}
+.row{display:flex;gap:1rem;justify-content:center;align-items:center;flex-wrap:wrap}
+button.b{font:inherit;font-weight:500;border:0;border-radius:999px;padding:.85rem 1.8rem;cursor:pointer}
+button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+#yes{background:var(--rose);color:var(--rose-d);font-size:1.05rem;transition:transform .2s}
+#no{background:transparent;color:var(--soft);border:1px solid rgba(185,180,196,.5);transition:transform .25s ease,font-size .25s,padding .25s}
+#hint{color:var(--soft);font-size:.95rem;margin:1.2rem 0 0;min-height:1.6rem}
+#done{text-align:center;padding-top:3rem}
+#done h2{font-size:2.3rem}
+#done p{font-family:'Fraunces',serif;font-weight:300;font-size:1.2rem}
+.fx span{position:fixed;bottom:-2rem;animation:up 4.5s linear forwards;pointer-events:none;z-index:5}
+@keyframes up{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){.emo,.bear,.tear,.env,.fx span{animation:none}.fx{display:none}.paper p{animation:none;opacity:1}.flap{transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<main>
+  <section id="intro" class="center">
+    <div id="bearTop"></div>
+    <button id="env" class="env" aria-label="Open the letter"><span class="flap"></span><span class="seal">💌</span></button>
+    <p class="tap">I wrote you something. Tap to open. 🥺</p>
+  </section>
+
+  <section id="main" hidden>
+    <h1>I'm sorry. 💔</h1>
+    <article class="paper" id="letter"></article>
+
+    <div class="sec">
+      <h2>What I promise 🤞</h2>
+      <ul class="prom" id="prom"></ul>
+    </div>
+
+    <div class="sec">
+      <div class="ticket">
+        <h2>🎟️ Make-up date, admit two</h2>
+        <ul>
+          <li>🍝 Dinner anywhere you choose</li>
+          <li>🍿 A movie with all the snacks</li>
+          <li>🤗 Unlimited hugs, no expiry</li>
+        </ul>
+        <small>Redeemable the moment you say yes below.</small>
+      </div>
+    </div>
+
+    <section class="ask sec" id="ask">
+      <h2>Will you forgive me? 🥹</h2>
+      <div class="row"><button class="b" id="yes">Yes 💖</button><button class="b" id="no">No</button></div>
+      <p id="hint" aria-live="polite"></p>
+    </section>
+
+    <section id="done" hidden aria-live="polite">
+      <div id="bearDone"></div>
+      <h2>Thank you, my love. 💕</h2>
+      <p>Main sirf bolunga nahi, karke dikhaunga. 🌹</p>
+      <p>Ab batao kab aur kahan milna hai. Main pakka aaunga. 🍝</p>
+    </section>
+  </section>
+</main>
+<div class="fx" id="fx" aria-hidden="true"></div>
+<script>
+// ✏️ Edit these to make it yours
+var HER_NAME = "Himanshi";
+var WHAT_HAPPENED = "Aaj milne nahi aaya";
+var YOUR_NAME = "Aman";
+var PROMISES = [
+  ["⏰","Time pe aaunga","Jab tum bulaogi, main wahan hounga. Bina bahane ke."],
+  ["📱","Pehle bata dunga","Agar kabhi na aa paun, toh pehle hi bata dunga. Gayab nahi hounga."],
+  ["🍫","Bharpai karunga","Sirf words se nahi, actions se. Aaj se hi."]
+];
+var LINES = [
+  HER_NAME + ",",
+  "Tumne aaj mujhe milne bulaya tha, aur main nahi aaya. Tumhe intezaar karwaya aur bura lagwaya, iske liye main sachmuch sorry hoon. 💔",
+  "Koi bahana nahi dunga. Tumne mujhse milna chaha tha aur mujhe wahan hona chahiye tha. Mujhe samajh aa raha hai ki tumhe kaisa laga hoga.",
+  "Tum meri life ke sabse khaas logon mein se ho, aur main kabhi nahi chahta ki tumhe lage ki tum mere liye important nahi ho. 🥺",
+  "Ek aur mauka do. Jab tum kaho, jahan tum kaho, main khud aaunga. 🫶"
+];
+document.title = "For " + HER_NAME;
+
+function bear(happy){
+  var face = happy
+   ? '<path d="M37 59Q43 51 49 59M71 59Q77 51 83 59" stroke="#2a1a14" stroke-width="3.5" fill="none" stroke-linecap="round"/><circle cx="35" cy="72" r="6" fill="#ff9fb5" opacity=".7"/><circle cx="85" cy="72" r="6" fill="#ff9fb5" opacity=".7"/><path d="M50 85Q60 96 70 85" stroke="#3a2418" stroke-width="3" fill="none" stroke-linecap="round"/>'
+   : '<circle cx="43" cy="58" r="4.5" fill="#2a1a14"/><circle cx="77" cy="58" r="4.5" fill="#2a1a14"/><path d="M35 47L50 53M85 47L70 53" stroke="#3a2418" stroke-width="3" stroke-linecap="round"/><path d="M52 90Q60 83 68 90" stroke="#3a2418" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse class="tear" cx="43" cy="66" rx="3" ry="4.5" fill="#8fd3ff"/>';
+  return '<svg class="bear '+(happy?'happy':'')+'" viewBox="0 0 120 120" width="130" height="130" role="img" aria-label="'+(happy?'A happy cartoon bear':'A sad cartoon bear')+'"><circle cx="25" cy="30" r="16" fill="#b9825a"/><circle cx="95" cy="30" r="16" fill="#b9825a"/><circle cx="25" cy="30" r="8" fill="#e9bf9a"/><circle cx="95" cy="30" r="8" fill="#e9bf9a"/><circle cx="60" cy="65" r="45" fill="#c58f64"/><ellipse cx="60" cy="80" rx="18" ry="14" fill="#e9bf9a"/><ellipse cx="60" cy="74" rx="6" ry="4.5" fill="#3a2418"/>'+face+'</svg>';
+}
+function $(id){return document.getElementById(id)}
+$("bearTop").innerHTML = bear(false);
+$("bearDone").innerHTML = bear(true);
+
+LINES.forEach(function(t,i){
+  var p=document.createElement("p"); p.textContent=t; p.style.animationDelay=(i*1.1+.4)+"s"; $("letter").appendChild(p);
+});
+var s=document.createElement("p"); s.className="sign"; s.textContent="Always yours, "+YOUR_NAME+" 🌹"; s.style.animationDelay=(LINES.length*1.1+.4)+"s"; $("letter").appendChild(s);
+PROMISES.forEach(function(x){
+  var li=document.createElement("li");
+  li.innerHTML='<span class="ic">'+x[0]+'</span><div><b></b><span></span></div>';
+  li.querySelector("b").textContent=x[1]; li.querySelector("span:last-child").textContent=x[2];
+  $("prom").appendChild(li);
+});
+
+$("env").addEventListener("click",function(){
+  this.classList.add("open");
+  setTimeout(function(){ $("intro").hidden=true; $("main").hidden=false; window.scrollTo(0,0); burst(["✨","💌"],10); },900);
+});
+
+var no=$("no"),yes=$("yes"),hint=$("hint"),tries=0;
+var lines=["Nice try. 😏","The Yes button is right there. 👉","I'm very sorry, and also very persistent. 🐻","Okay, last chance to pick Yes. 🙏","It's getting smaller. Just saying. 😅"];
+function dodge(e){
+  if(e&&e.preventDefault)e.preventDefault();
+  tries++;
+  var x=(Math.random()-.5)*Math.min(240,window.innerWidth-120),y=(Math.random()-.5)*110;
+  no.style.transform="translate("+x+"px,"+y+"px)";
+  var z=Math.max(.55,1-tries*.08);
+  no.style.fontSize=z+"rem"; no.style.padding=(.85*z)+"rem "+(1.8*z)+"rem";
+  hint.textContent=lines[Math.min(tries-1,lines.length-1)];
+  yes.style.transform="scale("+Math.min(1.5,1+tries*.07)+")";
+}
+no.addEventListener("mouseenter",dodge);
+no.addEventListener("touchstart",dodge,{passive:false});
+no.addEventListener("click",dodge);
+
+function burst(set,n){
+  var f=$("fx");
+  for(var i=0;i<n;i++){var sp=document.createElement("span");
+    sp.textContent=set[Math.floor(Math.random()*set.length)];
+    sp.style.left=Math.random()*100+"vw"; sp.style.fontSize=(1+Math.random()*1.6)+"rem";
+    sp.style.animationDelay=(Math.random()*2)+"s"; f.appendChild(sp);
+    setTimeout(function(el){return function(){el.remove()}}(sp),7500);}
+}
+yes.addEventListener("click",function(){
+  $("ask").hidden=true; $("done").hidden=false;
+  $("done").scrollIntoView({block:"center"});
+  burst(["💖","💕","🌹","🧸","✨","💌","🥰","🎉"],40);
+});
+
+// starry sky
+(function(){
+  var c=$("sky"),x=c.getContext("2d"),W,H,stars=[],shoot=null;
+  var still=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  function size(){W=c.width=innerWidth;H=c.height=innerHeight;stars=[];
+    for(var i=0;i<110;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+.3,p:Math.random()*6});}
+  size(); addEventListener("resize",size);
+  function draw(t){
+    x.clearRect(0,0,W,H);
+    stars.forEach(function(s){x.globalAlpha=.35+.5*Math.abs(Math.sin(t/1200+s.p));x.fillStyle="#fff";x.beginPath();x.arc(s.x,s.y,s.r,0,7);x.fill();});
+    if(!shoot&&Math.random()<.004)shoot={x:Math.random()*W*.7,y:Math.random()*H*.35,l:0};
+    if(shoot){shoot.l+=7;x.globalAlpha=Math.max(0,1-shoot.l/160);x.strokeStyle="#ffe9f0";x.lineWidth=2;x.beginPath();x.moveTo(shoot.x+shoot.l,shoot.y+shoot.l*.5);x.lineTo(shoot.x+shoot.l-40,shoot.y+shoot.l*.5-20);x.stroke();if(shoot.l>170)shoot=null;}
+    if(!still)requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
